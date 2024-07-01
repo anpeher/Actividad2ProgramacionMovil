@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-        initialRouteName='Formulario'
+        initialRouteName='Home'
         screenOptions={{
           tabBarStyle: {
             backgroundColor: 'black',  

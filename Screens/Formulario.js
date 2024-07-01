@@ -1,31 +1,72 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import TextInputFormComponent from '../components/TextInputFormComponent';
+import { addData } from '../data/data';
 
 export default function Formulario() {
-    return (
-        <ImageBackground 
-            source={require('../assets/BackgroundCuestionario.jpg')} 
-            style={styles.background}
-        >
-            <View style={styles.container}>
-            <Text style={styles.titulo}>HOLA</Text>
-            <Text style={styles.subtitle}>Introduzca sus datos</Text>
-            <TextInput
-                placeholder='Nombre de la fiesta'
-                style={styles.textInput}
-            />
-            <TextInput
-                placeholder='URL de la imagen'
-                style={styles.textInput}
-                secureTextEntry={true}
-            />
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Enviar</Text>
-            </TouchableOpacity>
-            <StatusBar style="auto" />
-            </View>
-        </ImageBackground>
-      )
+
+  const [fiestaName, setFiestaName] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
+  let idActual = 6
+
+  const validateUrl = (url) => {
+    const regex = /^(http|https):\/\/[^ "]+$/
+    return regex.test(url)
+  };
+
+  const handleSubmit = () => {
+    if (!fiestaName || !imageUrl) {
+      Alert.alert('Error', 'Todos los campos son obligatorios')
+      return
+    }
+
+    if (!validateUrl(imageUrl)) {
+      Alert.alert('Error', 'URL no válida')
+      setImageUrl('')
+      return
+    }
+
+    const newItem = {
+      id: idActual,
+      title: fiestaName,
+      URL: imageUrl,
+    }
+
+    addData(newItem)
+    Alert.alert('Éxito', 'Datos enviados correctamente')
+    idActual++;
+    setFiestaName('')
+    setImageUrl('')
+  };
+
+  return (
+      <ImageBackground 
+          source={require('../assets/BackgroundCuestionario.jpg')} 
+          style={styles.background}
+      >
+          <View style={styles.container}>
+          <Text style={styles.titulo}>HOLA</Text>
+          <Text style={styles.subtitle}>Introduzca sus datos</Text>
+            <TextInputFormComponent
+            placeholder='Nombre de la fiesta'
+            value={fiestaName}
+            onChangeText={setFiestaName}
+          />
+          <TextInputFormComponent
+            placeholder='URL de la imagen'
+            value={imageUrl}
+            onChangeText={setImageUrl}
+          />
+          <TouchableOpacity 
+            style={styles.button}
+            onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Enviar</Text>
+          </TouchableOpacity>
+          <StatusBar style="auto" />
+          </View>
+      </ImageBackground>
+    )
 }
 
 const styles = StyleSheet.create({
