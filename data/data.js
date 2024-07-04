@@ -1,3 +1,6 @@
+/**
+ * datos a exportar para utilizar en la flatlist
+ */
 export const data = [
     {
       id: 1,
@@ -26,6 +29,10 @@ export const data = [
     },
   ]
 
+  /**
+   * funcion para añadir nuevos elementos
+   * @param {*} newItem: el item creado para añadir
+   */
   export const addData = (newItem) => {
     data.push(newItem);
   };

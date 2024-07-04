@@ -1,6 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
-
+/**
+ * componente FlatList que sirve para mostrar los datos que tenemos, la screen que use el componente
+ * debe de ser la encargada de proporcionarlo los datos
+ * @param {*} data: datos que se usaran para crear la flatlist
+ * @returns Flatlist donde se muestra los elementos utilizados
+ */
 export default function FlatListComponent({ data }) {
   return (
     <FlatList 

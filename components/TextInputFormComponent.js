@@ -1,6 +1,13 @@
 import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
-
+/**
+ * campo para que interactue el usuario rellenando datos, se crea en component porque se reutiliza en 
+ * la ventana de formulario
+ * @param {*} placeholder: testo que se pone cuando esta vacio
+ * @param {*} value: variable donde se almacena la variable escrita
+ * @param {*} onChangeText: variable donde se almacena cada vez que el usuario escribe algo
+ * @returns 
+ */
 export default function TextInputFormComponent({ placeholder, value, onChangeText }) {
   return (
     <TextInput

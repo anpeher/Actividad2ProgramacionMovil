@@ -3,19 +3,28 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import TextInputFormComponent from '../components/TextInputFormComponent';
 import { addData } from '../data/data';
-
+/**
+ * Panatalla formulario, en ella tienes unos campos a rellenar para incluir en la flatList alguna fiesta tipica
+ * Para ello, en esta misma funcion comprobamos que funcione todo y lo submimos al archivo data
+ * @returns una vista de un formulario
+ */
 export default function Formulario() {
 
+  //obtenemos las variables donde se guarda los textview 
   const [fiestaName, setFiestaName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  //el ultimo id de data 5, por tanto empieza con el 6
   let idActual = 6
 
+  //validamos url
   const validateUrl = (url) => {
     const regex = /^(http|https):\/\/[^ "]+$/
     return regex.test(url)
   };
 
+  
   const handleSubmit = () => {
+    //validamos que los campos estén escritos correctamente
     if (!fiestaName || !imageUrl) {
       Alert.alert('Error', 'Todos los campos son obligatorios')
       return
@@ -26,7 +35,7 @@ export default function Formulario() {
       setImageUrl('')
       return
     }
-
+    //creamos el item para el data y lo añadimos
     const newItem = {
       id: idActual,
       title: fiestaName,
@@ -41,14 +50,14 @@ export default function Formulario() {
   };
 
   return (
-      <ImageBackground 
+      <ImageBackground //utilizamos una imagen de background
           source={require('../assets/BackgroundCuestionario.jpg')} 
           style={styles.background}
       >
           <View style={styles.container}>
           <Text style={styles.titulo}>HOLA</Text>
           <Text style={styles.subtitle}>Introduzca sus datos</Text>
-            <TextInputFormComponent
+            <TextInputFormComponent //componente importando de component que sirve como campo para rellenar
             placeholder='Nombre de la fiesta'
             value={fiestaName}
             onChangeText={setFiestaName}
@@ -68,7 +77,7 @@ export default function Formulario() {
       </ImageBackground>
     )
 }
-
+//usamos styles principalmente para mover los elementos
 const styles = StyleSheet.create({
     background: {
       width: '100%',

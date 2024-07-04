@@ -4,11 +4,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import FiestaComponent from '../components/FiestaFlatList';
 import { data } from '../data/data';
 
+/**
+ * Pantalla donde se realiza la pantalla scrolleable
+ * exportamos el componente principal que es FiestaComponent pasándole el data
+ * Aqui solo añadimos los componentes secundarios y le damos un style para configurar el espacio
+ * @returns pantalla scrolleable debido al uso de una flatList
+ */
 export default function Festivals() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.header}>Festivales Típicos</Text>
+        <Text style={styles.header}>Fiestas Típicas</Text>
         <FiestaComponent data={data} />
       </View>
     </SafeAreaView>
