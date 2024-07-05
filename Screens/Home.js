@@ -9,15 +9,15 @@ export default function HomeScreen( { navigation }) {
           source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
         />
         <View style={styles.headerTitleWrapper}>
-          <Text style={styles.titulo}>HOLA</Text>
+          <Text style={styles.titulo}>Fiestas de Pueblo</Text>
         </View>
       </View>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate("Formulario")}>
-          <Text>Link to Formulario</Text>
+      <View style={styles.buttonStack}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Formulario")}>
+          <Text>Incluir Nueva Fiesta</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Festivales")}>
-          <Text>Link Festivales</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Festivales")}>
+          <Text>Listado de Fiestas</Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.largeContent}>
@@ -28,7 +28,6 @@ export default function HomeScreen( { navigation }) {
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 5,
     flexDirection: 'column',
@@ -66,5 +65,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#000',
     fontWeight: 'bold',
-  }
+  },
+  buttonStack: {
+    flex: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },  
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    margin: 10,
+    backgroundColor: 'lightblue',
+  },
 });
