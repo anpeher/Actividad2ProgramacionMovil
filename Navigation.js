@@ -36,7 +36,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Encuesta',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="pencil-alt" size={24} color="white" />
+            <FontAwesome5 name="pencil-alt" size={24} color="black" />
           ),
         }} />
       <Tab.Screen name="Festivals"
