@@ -10,7 +10,7 @@ import { data } from '../data/data';
  * Aqui solo añadimos los componentes secundarios y le damos un style para configurar el espacio
  * @returns pantalla scrolleable debido al uso de una flatList
  */
-export default function Festivals() {
+export default function Festivals({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

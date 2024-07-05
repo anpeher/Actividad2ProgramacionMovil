@@ -10,17 +10,53 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FormularioScreen from "./Screens/Formulario"
 import HomeScreen from "./Screens/Home"
 import FestivalsScreen from "./Screens/Festivals"
+import ConfirmFiesta from "./Screens/ConfirmFiesta"
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 /**
+ * FormStack define las pantallas que se pueden visitar en la aplicación desde el formulario
+ * @returns Stack.Navigator 
+ */
+function FormStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <Stack.Screen name="Formulario" component={FormularioScreen} />
+      <Stack.Screen name="ConfirmFiesta" component={ConfirmFiesta} />
+      
+    </Stack.Navigator>
+  );
+}
+
+
+/**
+ * ListFiestasStack define las pantallas que se pueden visitar en la aplicación desde la pestaña Fiestas
+ * @returns Stack.Navigator 
+ */
+function ListFiestasStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
+      <Stack.Screen name="Festivales" component={FestivalsScreen} />
+    </Stack.Navigator>
+  );
+}
+
+/**
  * StackNavigator define la navegación disponible en la parte inferior de la pantalla
  * @returns Tab.Navigator 
  */
-function MyTabs() {
+function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      headerShown: false
+    }}>
       <Tab.Screen
         name='Home'
         component={HomeScreen}
@@ -32,15 +68,15 @@ function MyTabs() {
         }} />
       <Tab.Screen
         name="Formulario"
-        component={FormularioScreen}
+        component={FormStack}
         options={{
-          tabBarLabel: 'Encuesta',
+          tabBarLabel: 'Añadir',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="pencil-alt" size={24} color="black" />
           ),
         }} />
       <Tab.Screen name="Festivals"
-        component={FestivalsScreen}
+        component={ListFiestasStack}
         options={{
           tabBarLabel: 'Fiestas',
           tabBarIcon: ({ color, size }) => (
@@ -51,22 +87,6 @@ function MyTabs() {
   );
 }
 
-/**
- * StackNavigator define las pantallas que se pueden visitar en la aplicación desde la pantalla principal
- * @returns Stack.Navigator 
- */
-function StackNavigator() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}>
-      <Stack.Screen name="Main" component={MyTabs} />
-      <Stack.Screen name="Formulario" component={FormularioScreen} />
-      <Stack.Screen name="Festivales" component={FestivalsScreen} />
-    </Stack.Navigator>
-  );
-}
 
 /**
  * Retorna el componente de navegación de la aplicación
@@ -75,7 +95,7 @@ function StackNavigator() {
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <StackNavigator />
+      <TabNavigator />
     </NavigationContainer>
   );
 }
