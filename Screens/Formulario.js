@@ -92,14 +92,12 @@ const styles = StyleSheet.create({
     },
     titulo: {
       fontSize: 40,
-      fontFamily: "cursive",
       color: '#fff',
       fontWeight: 'bold',
     },
     subtitle: {
       
       fontSize: 24,
-      fontFamily: "cursive",
       color: '#fff',
       fontWeight: 'bold',
       marginBottom: 20,
