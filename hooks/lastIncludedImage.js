@@ -13,7 +13,6 @@ export default function useLastImage(id=undefined) {
 }
 
 function findImage(id) {
-  console.log("data ", data)
   if (id === undefined) {
     return data[data.length - 1] || undefined;
   }
