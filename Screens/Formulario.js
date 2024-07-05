@@ -3,19 +3,20 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import TextInputFormComponent from '../components/TextInputFormComponent';
 import { addData } from '../data/data';
+import useLastImage from '../hooks/lastIncludedImage';
+
 /**
  * Panatalla formulario, en ella tienes unos campos a rellenar para incluir en la flatList alguna fiesta tipica
  * Para ello, en esta misma funcion comprobamos que funcione todo y lo submimos al archivo data
  * @returns una vista de un formulario
  */
-export default function Formulario() {
+export default function Formulario({ navigation }) {
 
   //obtenemos las variables donde se guarda los textview 
   const [fiestaName, setFiestaName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
-  //el ultimo id de data 5, por tanto empieza con el 6
-  let idActual = 6
-
+  const [lastImage, setIdActual] = useLastImage(5); //obtenemos el
+  
   //validamos url
   const validateUrl = (url) => {
     const regex = /^(http|https):\/\/[^ "]+$/
@@ -37,16 +38,15 @@ export default function Formulario() {
     }
     //creamos el item para el data y lo añadimos
     const newItem = {
-      id: idActual,
+      id: lastImage.id + 1,
       title: fiestaName,
       URL: imageUrl,
     }
-
     addData(newItem)
-    Alert.alert('Éxito', 'Datos enviados correctamente')
-    idActual++;
+    setIdActual(newItem.id)
     setFiestaName('')
     setImageUrl('')
+    navigation.navigate('ConfirmFiesta', {screen: 'Home', item: newItem})
   };
 
   return (
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
       height: '100%',
       resizeMode: 'cover'
     },
-  
     container: {
       flex: 1,
       alignItems: 'center',
