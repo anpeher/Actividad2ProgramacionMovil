@@ -15,6 +15,7 @@ export default function Formulario({ navigation }) {
   //obtenemos las variables donde se guarda los textview 
   const [fiestaName, setFiestaName] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  const [textwarning, setTextWarning] = useState('Al insertar lo redirige a otra pagina')
   const [lastImage, setIdActual] = useLastImage(5); //obtenemos el
   
   //validamos url
@@ -27,12 +28,12 @@ export default function Formulario({ navigation }) {
   const handleSubmit = () => {
     //validamos que los campos estén escritos correctamente
     if (!fiestaName || !imageUrl) {
-      Alert.alert('Error', 'Todos los campos son obligatorios')
+      setTextWarning("Todos los campos son obligatorios")
       return
     }
 
     if (!validateUrl(imageUrl)) {
-      Alert.alert('Error', 'URL no válida')
+      setTextWarning("URL no válida")
       setImageUrl('')
       return
     }
@@ -73,6 +74,7 @@ export default function Formulario({ navigation }) {
               <Text style={styles.buttonText}>Enviar</Text>
           </TouchableOpacity>
           <StatusBar style="auto" />
+          <Text style={styles.buttonText}>{textwarning}</Text>
           </View>
       </ImageBackground>
     )
@@ -122,5 +124,9 @@ const styles = StyleSheet.create({
     buttonText: {
       color: '#fff',
       fontSize: 14,
+    },
+    warning: { 
+      fontSize: 20,
+      color: '#fff',
     },
   });
