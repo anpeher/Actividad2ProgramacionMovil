@@ -1,6 +1,11 @@
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 
-export default function HomeScreen( { navigation }) {
+
+/**
+ * HomeScreen es la pantalla principal de la aplicación
+ * @returns View 
+ */
+export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 5,
     flexDirection: 'column',
     justifyContent: 'center',
-  },  
+  },
   button: {
     alignItems: "center",
     backgroundColor: "#DDDDDD",

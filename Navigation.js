@@ -14,7 +14,10 @@ import FestivalsScreen from "./Screens/Festivals"
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-
+/**
+ * StackNavigator define la navegación disponible en la parte inferior de la pantalla
+ * @returns Tab.Navigator 
+ */
 function MyTabs() {
   return (
     <Tab.Navigator>
@@ -48,7 +51,10 @@ function MyTabs() {
   );
 }
 
-
+/**
+ * StackNavigator define las pantallas que se pueden visitar en la aplicación desde la pantalla principal
+ * @returns Stack.Navigator 
+ */
 function StackNavigator() {
   return (
     <Stack.Navigator
@@ -62,7 +68,10 @@ function StackNavigator() {
   );
 }
 
-
+/**
+ * Retorna el componente de navegación de la aplicación
+ * @returns NavigationContainer 
+ */
 export default function Navigation() {
   return (
     <NavigationContainer>
