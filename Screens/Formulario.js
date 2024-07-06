@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import TextInputFormComponent from '../components/TextInputFormComponent';
 import { addData } from '../data/data';
 import useLastImage from '../hooks/lastIncludedImage';
@@ -45,6 +45,7 @@ export default function Formulario({ navigation }) {
     }
     addData(newItem)
     setIdActual(newItem.id)
+    setTextWarning("Al insertar lo redirige a otra pagina")
     setFiestaName('')
     setImageUrl('')
     navigation.navigate('ConfirmFiesta', {screen: 'Home', item: newItem})
